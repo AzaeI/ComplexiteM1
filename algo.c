@@ -182,13 +182,23 @@ Result diviserPourRegner(int t[], int debut, int fin ){
 
 Result aglo3(int t[],int n){  
     Result r;
-    r = diviserPourRegner(t,0,n-1);
+    r = diviserPourRegner(t,0,n);
     return r;
 }
 
 void afficheResultat(Result res){
 	printf("Tronçon [%d-%d] max = %d \n",res.debut ,res.fin, res.max );
 }
+
+void afficheTabIndice(int debut, int fin, tab){
+    printf("[");
+    for (int i = debut; i < fin-1; ++i)
+    {
+        printf("%d.",tab[i]);
+    }
+    printf("%d]\n",tab[fin]);
+}
+
 void afficheTab(int t[], int n){
 	printf("[");
 	for (int i = 0; i < n-1; ++i){
@@ -201,9 +211,8 @@ int main()
 {
 	int n = 5;
 	Result res;
-	int tab[5] = {10,-5,6,9,-2};
-
-	afficheTab(tab,n);
+	int tab[5] = {1,5,-6,9,-2};
+    afficheTab(tab,n);
 	//res = aglo1(tab,5);
 	// res = aglo2(tab,0,5);
     res = aglo3(tab,5);
