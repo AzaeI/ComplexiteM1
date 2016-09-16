@@ -60,14 +60,23 @@ Result aglo2(int t[], int debut, int fin){
 			indiceCourrantF++;
 		}
 
-		indiceCourrantF = indiceCourrantD +1;
-		indiceCourrantD++;
-	}
+        indiceCourrantF = indiceCourrantD +1;
+        indiceCourrantD++;
+    }
     Result resultat; 
     resultat.debut = indiceD;
     resultat.fin = indiceF;
     resultat.max = max;
     return resultat;
+}
+
+void afficheTabIndice(int debut, int fin, int tab[]){
+    printf("[");
+    for (int i = debut; i < fin; ++i)
+    {
+        printf("%d.",tab[i]);
+    }
+    printf("%d]\n",tab[fin]);
 }
 
 Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
@@ -76,6 +85,11 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
     Result resultat;
     int i;
     int resultMaxTemp;
+    // printf("----------------\n");
+    // afficheTabIndice(debutSeq1,finSeq2,tab);
+    // printf("----------------\n");
+
+
     //gauche ou droite 
     if (resultat1.max < resultat2.max){  
         resultat.max = resultat2.max;
@@ -83,11 +97,22 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
         resultat.fin = resultat2.fin;
     }
 
+    
+
     else  {
         resultat.max = resultat1.max;
         resultat.debut = resultat1.debut;
         resultat.fin = resultat1.fin;
     }
+
+    // // printf("resultat1.max %d\n",resultat1.max );
+    // // printf("resultat1.debut %d\n",resultat1.debut );
+    // // printf("resultat1.fin %d\n",resultat1.fin );
+
+    // // printf("resultat2.max %d\n",resultat2   .max );
+    // // printf("resultat2.debut %d\n",resultat2.debut );
+    // printf("resultat2.fin %d\n",resultat2.fin );
+
     //Test du milieu
     Result resultatMilieu;
     //coler au 2
@@ -99,16 +124,17 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
     //coler a gauche 
     else if(resultat1.fin == finSeq1){
         resultatMilieu.max = tab[debutSeq2]+ resultat1.max;
+        // printf("---%d\n---",resultat1.debut);
         resultatMilieu.debut = resultat1.debut;
         resultatMilieu.fin = debutSeq2; 
         //si le milieu est améliore par la  sous séquence a droite  
-        i = resultat2.debut +1;
+        i = debutSeq2 +1;;
         resultMaxTemp = resultatMilieu.max;
-        while(i < finSeq2 ){
+        while(i <= finSeq2 ){
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.fin += i;
+                resultatMilieu.fin += 1;
             }
             ++i;
         }
@@ -117,17 +143,16 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
     else if(resultat2.debut == debutSeq2){
         
         resultatMilieu.max = tab[finSeq1] + resultat2.max;
-        resultatMilieu.debut = finSeq1;
+        resultatMilieu.debut = finSeq1 -1;
         resultatMilieu.fin = resultat2.fin; 
         //si le milieu est améliore par la  sous séquence a gauche 
-        i = resultat2.debut -1;
+        i = finSeq1 -1;
         resultMaxTemp = resultatMilieu.max;
-        while(i > resultat1.debut ){
-        
+        while(i >= resultat1.debut ){
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.debut -= i;
+                resultatMilieu.debut -= 1;
             }
             --i;
         }
@@ -136,28 +161,37 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
         resultatMilieu.max = tab[finSeq1] + tab[debutSeq2];
         resultatMilieu.debut = finSeq1;
         resultatMilieu.fin = debutSeq2; 
-        i = finSeq1;
-        while(i > resultat1.debut ){
+        i = finSeq1 -1;
+
+        while(i >= resultat1.debut ){
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.debut -= i;
+                resultatMilieu.debut -= 1;
             }
             --i;
         }
-        while(i < finSeq2 ){
+
+        i = debutSeq2 +1;
+        while(i <= finSeq2 ){
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.fin += i;
+                resultatMilieu.fin += 1;
             }
             ++i;
         }
     }
     if(resultatMilieu.max > resultat.max){
-       
-        return resultatMilieu;
+        // printf("resultatMilieu.max %d\n",resultatMilieu.max );
+        // printf("resultatMilieu.debut %d\n",resultatMilieu.debut );
+        // printf("resultatMilieu.fin %d\n",resultatMilieu.fin );
+         return resultatMilieu;
     }
+    // printf("resultat.debut %d\n",resultat.debut );
+    // printf("resultat.fin %d\n",resultat.fin );
+    // printf("resultat.max %d\n",resultat.max );
+
     return resultat;
 }
 
@@ -171,8 +205,8 @@ Result diviserPourRegner(int t[], int debut, int fin ){
         r.fin = fin;
     }
     else if (debut < fin) {
-    	Result r1;
-    	Result r2;
+        Result r1;
+        Result r2;
         r1 = diviserPourRegner(t,debut,(debut+fin)/2);
         r2 = diviserPourRegner(t,((debut+fin)/2)+1,fin);
         r = testSousSequence(r1,debut,((debut+fin)/2),r2,(((debut+fin)/2)+1),fin,t);
@@ -182,22 +216,14 @@ Result diviserPourRegner(int t[], int debut, int fin ){
 
 Result aglo3(int t[],int n){  
     Result r;
-    r = diviserPourRegner(t,0,n);
+    r = diviserPourRegner(t,0,n-1);
     return r;
 }
 
 void afficheResultat(Result res){
-	printf("Tronçon [%d-%d] max = %d \n",res.debut ,res.fin, res.max );
+    printf("Tronçon [%d-%d] max = %d \n",res.debut ,res.fin, res.max );
 }
 
-void afficheTabIndice(int debut, int fin, tab){
-    printf("[");
-    for (int i = debut; i < fin-1; ++i)
-    {
-        printf("%d.",tab[i]);
-    }
-    printf("%d]\n",tab[fin]);
-}
 
 void afficheTab(int t[], int n){
 	printf("[");
@@ -211,7 +237,7 @@ int main()
 {
 	int n = 5;
 	Result res;
-	int tab[5] = {1,5,-6,9,-2};
+	int tab[5] = {8,-12,5,9,-2};
     afficheTab(tab,n);
 	//res = aglo1(tab,5);
 	// res = aglo2(tab,0,5);
