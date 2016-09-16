@@ -73,18 +73,16 @@ Result aglo2(int t[], int debut, int fin){
 Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
                         Result resultat2, int debutSeq2, int finSeq2,
                         int tab[]) {
-    
-    printf("resultat1 %d\n",resultat1.max);
-    printf("resultat2 %d\n",resultat1.max);
     Result resultat;
     int i;
     int resultMaxTemp;
     //gauche ou droite 
-    if (resultat1.max < resultat2.max){
+    if (resultat1.max < resultat2.max){  
         resultat.max = resultat2.max;
         resultat.debut = resultat2.debut;
         resultat.fin = resultat2.fin;
     }
+
     else  {
         resultat.max = resultat1.max;
         resultat.debut = resultat1.debut;
@@ -104,7 +102,7 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
         resultatMilieu.debut = resultat1.debut;
         resultatMilieu.fin = debutSeq2; 
         //si le milieu est améliore par la  sous séquence a droite  
-        i = resultat2.debut;
+        i = resultat2.debut +1;
         resultMaxTemp = resultatMilieu.max;
         while(i < finSeq2 ){
             resultMaxTemp += tab[i];
@@ -117,13 +115,15 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
     }
     //coler a droite 
     else if(resultat2.debut == debutSeq2){
+        
         resultatMilieu.max = tab[finSeq1] + resultat2.max;
         resultatMilieu.debut = finSeq1;
         resultatMilieu.fin = resultat2.fin; 
         //si le milieu est améliore par la  sous séquence a gauche 
-        i = resultat2.debut;
+        i = resultat2.debut -1;
         resultMaxTemp = resultatMilieu.max;
         while(i > resultat1.debut ){
+        
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;
@@ -155,6 +155,7 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
         }
     }
     if(resultatMilieu.max > resultat.max){
+       
         return resultatMilieu;
     }
     return resultat;
@@ -176,7 +177,6 @@ Result diviserPourRegner(int t[], int debut, int fin ){
         r2 = diviserPourRegner(t,((debut+fin)/2)+1,fin);
         r = testSousSequence(r1,debut,((debut+fin)/2),r2,(((debut+fin)/2)+1),fin,t);
     }
-    
     return r;
 }
 
