@@ -74,6 +74,8 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
                         Result resultat2, int debutSeq2, int finSeq2,
                         int tab[]) {
     
+    printf("resultat1 %d\n",resultat1.max);
+    printf("resultat2 %d\n",resultat1.max);
     Result resultat;
     int i;
     int resultMaxTemp;
@@ -162,13 +164,19 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
 
 Result diviserPourRegner(int t[], int debut, int fin ){
     Result r;
-    if (debut < fin) {
+    if(debut == fin){
+        r.max = t[debut];
+        r.debut = debut;
+        r.fin = fin;
+    }
+    else if (debut < fin) {
     	Result r1;
     	Result r2;
         r1 = diviserPourRegner(t,debut,(debut+fin)/2);
         r2 = diviserPourRegner(t,((debut+fin)/2)+1,fin);
         r = testSousSequence(r1,debut,((debut+fin)/2),r2,(((debut+fin)/2)+1),fin,t);
     }
+    
     return r;
 }
 
@@ -196,8 +204,8 @@ int main()
 	int tab[5] = {1,5,-6,9,-2};
 
 	afficheTab(tab,n);
-	res = aglo1(tab,5);
+	//res = aglo1(tab,5);
 	// res = aglo2(tab,0,5);
-	// res = aglo3(tab,0,5);
+    res = aglo3(tab,5);
 	afficheResultat(res);
 }
