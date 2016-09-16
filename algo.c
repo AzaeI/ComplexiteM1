@@ -182,7 +182,7 @@ Result diviserPourRegner(int t[], int debut, int fin ){
 
 Result aglo3(int t[],int n){  
     Result r;
-    r = diviserPourRegner(t,0,n);
+    r = diviserPourRegner(t,0,n-1);
     return r;
 }
 
@@ -201,7 +201,7 @@ int main()
 {
 	int n = 5;
 	Result res;
-	int tab[5] = {1,5,-6,9,-2};
+	int tab[5] = {10,-5,6,9,-2};
 
 	afficheTab(tab,n);
 	//res = aglo1(tab,5);
