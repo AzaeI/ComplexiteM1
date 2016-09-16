@@ -28,16 +28,16 @@ void aglo1(int t[], int n){
 
 }
 
-void aglo2(int t[], int n){
+void aglo2(int t[], int debut, int fin){
 	int max = t[0],
-		indiceD = 0,
-		indiceF = 0,
-		indiceCourrantD = 0,
-		indiceCourrantF = 0;
+		indiceD = debut,
+		indiceF = debut,
+		indiceCourrantD = debut,
+		indiceCourrantF = debut;
 
-	while (indiceCourrantD < n ){
+	while (indiceCourrantD < fin ){
 		int tmp = 0;
-		while (indiceCourrantF < n){
+		while (indiceCourrantF < fin){
 			int maxTmp = tmp + t[indiceCourrantF];
 			printf(" max tmp = %d\n", maxTmp);
 			if (maxTmp > max){
@@ -55,17 +55,13 @@ void aglo2(int t[], int n){
 	printf("Tronçon [%d-%d] max = %d \n",indiceD,indiceF, max );
 }
 
-void aglo3(int t[], int n){	
-	
-}
-
 int main()
 {
-	int tab[4] = {1,5,-6,5};
-	for (int i = 0; i < 4; ++i){
+	int tab[5] = {1,5,-6,5,-2};
+	for (int i = 0; i < 5; ++i){
 		printf("%d - ", tab[i]);
 	}
 	printf("\n");
-	// aglo1(tab,4);
-	aglo2(tab,4);
+	// aglo1(tab,5);
+	aglo2(tab,0,5);
 }
