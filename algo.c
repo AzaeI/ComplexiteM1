@@ -10,10 +10,10 @@ struct Result
 
 Result aglo1(int t[], int n){
     int max = t[0],
-        indiceD = 0,
-        indiceF = 0,
-        indiceCourrantD = 0,
-        indiceCourrantF = 0;
+    indiceD = 0,
+    indiceF = 0,
+    indiceCourrantD = 0,
+    indiceCourrantF = 0;
 
     while (indiceCourrantD < n ){
         while (indiceCourrantF < n){
@@ -41,33 +41,33 @@ Result aglo1(int t[], int n){
 
 Result aglo2(int t[], int debut, int fin){
 	int max = t[0],
-		indiceD = debut,
-		indiceF = debut,
-		indiceCourrantD = debut,
-		indiceCourrantF = debut;
+  indiceD = debut,
+  indiceF = debut,
+  indiceCourrantD = debut,
+  indiceCourrantF = debut;
 
-	while (indiceCourrantD < fin ){
-		int tmp = 0;
-		while (indiceCourrantF < fin){
-			int maxTmp = tmp + t[indiceCourrantF];
+  while (indiceCourrantD < fin ){
+      int tmp = 0;
+      while (indiceCourrantF < fin){
+         int maxTmp = tmp + t[indiceCourrantF];
 			// printf(" max tmp = %d\n", maxTmp);
-			if (maxTmp > max){
-				max = maxTmp;
-				indiceD = indiceCourrantD;
-				indiceF = indiceCourrantF;
-			}
-			tmp = maxTmp;
-			indiceCourrantF++;
-		}
-
-        indiceCourrantF = indiceCourrantD +1;
-        indiceCourrantD++;
+         if (maxTmp > max){
+            max = maxTmp;
+            indiceD = indiceCourrantD;
+            indiceF = indiceCourrantF;
+        }
+        tmp = maxTmp;
+        indiceCourrantF++;
     }
-    Result resultat; 
-    resultat.debut = indiceD;
-    resultat.fin = indiceF;
-    resultat.max = max;
-    return resultat;
+
+    indiceCourrantF = indiceCourrantD +1;
+    indiceCourrantD++;
+}
+Result resultat; 
+resultat.debut = indiceD;
+resultat.fin = indiceF;
+resultat.max = max;
+return resultat;
 }
 
 void afficheTabIndice(int debut, int fin, int tab[]){
@@ -79,15 +79,29 @@ void afficheTabIndice(int debut, int fin, int tab[]){
     printf("%d]\n",tab[fin]);
 }
 
+
+
+
+
+
 Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
-                        Result resultat2, int debutSeq2, int finSeq2,
-                        int tab[]) {
+    Result resultat2, int debutSeq2, int finSeq2,
+    int tab[]) {
     Result resultat;
     int i;
     int resultMaxTemp;
+//    printf("----------------\n");
+//    afficheTabIndice(debutSeq1,finSeq2,tab);
+    
     // printf("----------------\n");
-    // afficheTabIndice(debutSeq1,finSeq2,tab);
+    // printf("debutSeq1 %d\n",debutSeq1 );
+    // printf("finSeq1 %d \n",finSeq1);
+    
     // printf("----------------\n");
+    // printf("debutSeq2 %d\n",debutSeq2 );
+    // printf("finSeq1 %d\n",finSeq2 );
+//    printf("----------------\n");
+
 
 
     //gauche ou droite 
@@ -105,13 +119,16 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
         resultat.fin = resultat1.fin;
     }
 
-    // // printf("resultat1.max %d\n",resultat1.max );
-    // // printf("resultat1.debut %d\n",resultat1.debut );
-    // // printf("resultat1.fin %d\n",resultat1.fin );
+    // printf("resultat1.max %d\n",resultat1.max );
+    // printf("resultat1.debut %d\n",resultat1.debut );
+    // printf("resultat1.fin %d\n",resultat1.fin );
+    
+    // printf("------------------\n");
 
-    // // printf("resultat2.max %d\n",resultat2   .max );
-    // // printf("resultat2.debut %d\n",resultat2.debut );
+    // printf("resultat2.max %d\n",resultat2   .max );
+    // printf("resultat2.debut %d\n",resultat2.debut );
     // printf("resultat2.fin %d\n",resultat2.fin );
+//    printf("------------------\n");
 
     //Test du milieu
     Result resultatMilieu;
@@ -121,6 +138,7 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
         resultatMilieu.debut = resultat1.debut;
         resultatMilieu.fin = resultat2.fin;
     }
+
     //coler a gauche 
     else if(resultat1.fin == finSeq1){
         resultatMilieu.max = tab[debutSeq2]+ resultat1.max;
@@ -134,14 +152,14 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.fin += 1;
+                resultatMilieu.fin = i;
             }
             ++i;
         }
     }
     //coler a droite 
     else if(resultat2.debut == debutSeq2){
-        
+
         resultatMilieu.max = tab[finSeq1] + resultat2.max;
         resultatMilieu.debut = finSeq1 -1;
         resultatMilieu.fin = resultat2.fin; 
@@ -152,7 +170,7 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.debut -= 1;
+                resultatMilieu.debut = i;
             }
             --i;
         }
@@ -163,11 +181,12 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
         resultatMilieu.fin = debutSeq2; 
         i = finSeq1 -1;
 
+        resultMaxTemp = resultatMilieu.max;
         while(i >= resultat1.debut ){
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.debut -= 1;
+                resultatMilieu.debut = i;
             }
             --i;
         }
@@ -177,7 +196,7 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.fin += 1;
+                resultatMilieu.fin = i;
             }
             ++i;
         }
@@ -186,12 +205,19 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
         // printf("resultatMilieu.max %d\n",resultatMilieu.max );
         // printf("resultatMilieu.debut %d\n",resultatMilieu.debut );
         // printf("resultatMilieu.fin %d\n",resultatMilieu.fin );
-         return resultatMilieu;
+        // printf("\n");
+        // printf("\n");
+        // printf("\n");
+        
+        return resultatMilieu;
     }
     // printf("resultat.debut %d\n",resultat.debut );
     // printf("resultat.fin %d\n",resultat.fin );
     // printf("resultat.max %d\n",resultat.max );
-
+    // printf("\n");
+    // printf("\n");
+    // printf("\n");
+    // printf("\n");
     return resultat;
 }
 
@@ -222,8 +248,8 @@ Result aglo3(int t[],int n){
 
 void afficheResultat(Result res){
     printf("Tronçon [%d-%d] max = %d \n",res.debut ,res.fin, res.max );
-}
 
+}
 
 void afficheTab(int t[], int n){
 	printf("[");
@@ -233,14 +259,26 @@ void afficheTab(int t[], int n){
 	printf("%d]\n", t[n-1]);
 }
 
-int main()
+void calSomme(int t[], int debut,int fin){
+    int somme = 0;
+    for (int i = debut; i < fin+1; ++i)
+    {
+        somme += t[i];
+    }
+    printf("vérif :%d\n",somme);
+}
+
+#define N 101
+int main(int argc,char * argv)
 {
-	int n = 5;
 	Result res;
-	int tab[5] = {8,-12,5,9,-2};
-    afficheTab(tab,n);
+	int tab[N] = {
+        -60, 41, -35, -60, 12, 5, -61, 35, -33, 53, 36, 74, 29, 25, -31, -79, -66, 85, 92, -47, 9, 71, -30, -51, -9, -30, -52, 38, 24, -18, 81, 64, -77, 98, 56, -13, 4, 95, -77, 23, 0, 59, -3, 82, -64, 18, -97, -77, 4, 95, -24, -87, 18, -1, -85, 62, 69, -37, -48, -7, -3, 85, -91, 20, 84, 66, 59, -60, 13, 82, 15, 66, 41, -88, 48, 30, -17, 51, 53, 87, -2, 81, 52, 68, -20, 67, -18, -50, 82, 35, -5, -21, 20, -43, 51, -44, -77, -37, -4, -12, -55
+    };
+    //afficheTab(tab,N);
 	//res = aglo1(tab,5);
 	// res = aglo2(tab,0,5);
-    res = aglo3(tab,5);
-	afficheResultat(res);
+    res = aglo3(tab,N);
+   // afficheTabIndice(res.debut,res.fin,tab);
+    afficheResultat(res);
 }
