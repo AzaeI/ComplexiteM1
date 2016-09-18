@@ -3,19 +3,19 @@ PROCEDURE aglo1 (tab , taille_tab)
     indiceD = 0,
     indiceF = 0,
     indiceCourrantD = 0,
-    indiceCourrantF = 0; 
+    indiceCourrantF = 0 
 Debut 
     TANT_QUE indiceCourrantD < taille_tab 
         TANT_QUE indiceCourrantF < taille_tab 
             Pour i de indiceCourrantD jusqu'à indiceCourrantF+1 avec un pas de 1
                 maxTmp = maxTmp + tab[i]
-            Fin pour    
+            Fin_Pour   
             SI maxTmp > max ALORS
-                max = maxTmp;
+                max = maxTmp
                 indiceD = indiceCourrantD
                 indiceF = indiceCourrantF
-            Fin_si 
-            indiceCourrantD = indiceCourrantD +1
+            FIN_SI 
+            indiceCourrantF = indiceCourrantF +1
             
         FIN_TANT_QUE
         indiceCourrantF = indiceCourrantD +1
@@ -29,23 +29,66 @@ PROCEDURE aglo2 (tab , taille_tab)
     indiceD = 0,
     indiceF = 0,
     indiceCourrantD = 0,
-    indiceCourrantF = 0; 
-    tmp = 0;
+    indiceCourrantF = 0 
+    tmp = 0
 Debut 
     TANT_QUE indiceCourrantD < taille_tab 
         tmp = 0 
         TANT_QUE indiceCourrantF < taille_tab 
             maxTmp = tmp + t[indiceCourrantF]
             SI maxTmp > max ALORS
-                max = maxTmp;
+                max = maxTmp
                 indiceD = indiceCourrantD
                 indiceF = indiceCourrantF
-            Fin_si 
-            indiceCourrantD = indiceCourrantD +1
-            
+            FIN_SI 
+            indiceCourrantF = indiceCourrantF +1   
         FIN_TANT_QUE
         indiceCourrantF = indiceCourrantD +1
         indiceCourrantD = indiceCourrantD +1
     FIN_TANT_QUE
     AFFICHE("Tronçon  [" + indiceD + "-" + indiceF + "] max =" +  max)
 Fin 
+
+
+Result {
+    max
+    debut
+    fin
+}
+
+
+
+Fonction Result sommeMaxFin( indice, tableau){
+    Result sommeMax
+    sommeMax.max = tableau[indice]
+    sommeMax.debut = indice
+    sommeMax.fin = indice
+    maxTmp = tableau[indice]
+    Pour i = indice -1 jusqu'a i > 0 avec un pas de -1
+        maxTmp += tableau[i]  
+        SI sommeMax.max < maxTmp
+            sommeMax.max = maxTmp
+            sommeMax.debut = i
+        FIN_SI
+    FIN_Pour
+    retour sommeMax
+}
+
+Fonction Result aglo4( tableau, n){
+    i = 1
+    Result result
+    result.max = tableau[0]
+    result.debut = 0
+    result.fin = 0
+    Result resultatMaxTmp
+    TANT_QUE i < n 
+        resultatMaxTmp = sommeMaxFin(i,tableau)
+         SI resultatMaxTmp.max > result.max
+            result.max = resultatMaxTmp.max
+            result.debut = resultatMaxTmp.debut
+            result.fin = resultatMaxTmp.fin
+        FIN_SI
+        i = i+1
+    FIN_TANT_QUE
+    retour result
+}
