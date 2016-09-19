@@ -1,4 +1,4 @@
-#include "algo3.h"
+#include "../header/algo3.h"
 
 Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
                         Result resultat2, int debutSeq2, int finSeq2,

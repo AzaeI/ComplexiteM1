@@ -1,4 +1,4 @@
-#include "util.h"
+#include "../header/util.h"
 
 void afficheResultat(Result res){
     printf("Tronçon [%d-%d] max = %d \n",res.debut ,res.fin, res.max );

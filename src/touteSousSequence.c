@@ -1,4 +1,4 @@
-#include "touteSousSequence.h"
+#include "../header/touteSousSequence.h"
 
 Result touteSousSequence(int t[], int n){
     int max = t[0],
