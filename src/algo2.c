@@ -1,5 +1,5 @@
-#include "../header/algo2.h"
 #include "../header/util.h"
+#include "../header/algo2.h"
 
 Result aglo2(int t[], int debut, int fin){
     int max = t[0],

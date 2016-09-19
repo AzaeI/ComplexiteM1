@@ -1,3 +1,4 @@
+#include "../header/util.h"
 #include "../header/touteSousSequence.h"
 
 Result touteSousSequence(int t[], int n){
