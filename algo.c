@@ -1,4 +1,5 @@
  #include <stdio.h>
+ #include <stdlib.h>
 
 typedef struct Result Result;
 struct Result 
@@ -18,7 +19,7 @@ Result aglo1(int t[], int n){
     while (indiceCourrantD < n ){
         while (indiceCourrantF < n){
             int maxTmp = 0;
-            for (int i = indiceCourrantD; i < indiceCourrantF + 1; ++i) {
+            for (int i = indiceCourrantD; i < indiceCourrantF +1; ++i) {
                 maxTmp += t[i];
             }
             // printf(" max tmp = %d\n", maxTmp);
@@ -258,17 +259,26 @@ void calSomme(int t[], int debut,int fin){
 }
 
 #define N 101
-int main(int argc,char * argv)
+int main(int argc,char const * argv[])
 {
 	Result res;
-	int tab[N] = {
-        -60, 41, -35, -60, 12, 5, -61, 35, -33, 53, 36, 74, 29, 25, -31, -79, -66, 85, 92, -47, 9, 71, -30, -51, -9, -30, -52, 38, 24, -18, 81, 64, -77, 98, 56, -13, 4, 95, -77, 23, 0, 59, -3, 82, -64, 18, -97, -77, 4, 95, -24, -87, 18, -1, -85, 62, 69, -37, -48, -7, -3, 85, -91, 20, 84, 66, 59, -60, 13, 82, 15, 66, 41, -88, 48, 30, -17, 51, 53, 87, -2, 81, 52, 68, -20, 67, -18, -50, 82, 35, -5, -21, 20, -43, 51, -44, -77, -37, -4, -12, -55
-    };
-    //afficheTab(tab,N);
-	//res = aglo1(tab,5);
-	// res = aglo2(tab,0,5);
-    // res = aglo3(tab,N);  
-    res = aglo4(tab,N);
-   // afficheTabIndice(res.debut,res.fin,tab);
-    afficheResultat(res);
+    if(argc < 1){
+        fprintf(stderr, "nombre d'argument incorect" );
+        return -1;
+    }
+    int tailleTab = argc -1; 
+	int *tab = (int*)malloc(tailleTab * sizeof(int));
+    for (int i = 0; i < tailleTab; ++i) {
+        tab[i] = atoi(argv[i+1]);
+    }
+    //afficheTab(tab,tailleTab);
+	res = aglo1(tab,tailleTab);
+    // res = aglo2(tab,0,tailleTab);
+	// res = aglo2(tab,0,tailleTab);
+    res = aglo3(tab,tailleTab);  
+    //res = aglo4(tab,tailleTab);
+    //afficheTabIndice(res.debut,res.fin,tab);
+    //afficheResultat(res);
+    printf("%d %d",res.debut,res.fin);
+    free(tab);
 }
