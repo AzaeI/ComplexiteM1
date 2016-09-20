@@ -1,7 +1,7 @@
 #include "../header/util.h"
-#include "../header/algo1.h"
+#include "../header/touteSousSequence.h"
 
-Result algo1(int t[], int n){
+Result touteSousSequence(int t[], int n){
     int max = t[0],
     indiceD = 0,
     indiceF = 0,
