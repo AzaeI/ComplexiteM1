@@ -5,12 +5,12 @@ Result algo2 (int* t, int size);
 Result algo3 (int* t, int size);
 Result algo4 (int* t, int size);
 
-void (*listeFonctions[4])(int*,int) = {algo1,algo2,algo3,algo4};
+Result (*listeFonctions[4])(int*,int) = {algo1,algo2,algo3,algo4};
 
 int main(int argc,char const * argv[])
 {
 
-    void (*fonctionDeSSq)(int*, int); // déclaration du pointeur de fonction
+    Result (*fonctionDeSSq)(int*, int); // déclaration du pointeur de fonction
 
     int k;    // compteur boucle des fonctions de tris
     int j;    // compteur boucle des tailles d'un tableau pour un tris 
@@ -24,12 +24,10 @@ int main(int argc,char const * argv[])
     float tt;          // valeur finale du temps qu'a mis le test pour un tableau a s'effectuer.
 
     int isBroke = 0;   //boolean, si le timer de 5 min est dépasser, on passe le boulean a faux et on n'entre pas dans la boucle de traitemant.
-   
+    Result r;          // Structure Result de retour
 
     int timesTab[15] = {100,500,5000,10000,50000,100000,200000,300000,400000,500000,600000,700000,800000,900000,1000000};
     char* functionName[4] = {"algo1","algo2","algo3","algo4"};
-
-    printf("START \n");
 
     for (k = 0; k < 4; ++k)
     {
@@ -38,6 +36,7 @@ int main(int argc,char const * argv[])
         for (j = 0; j < 15 && !isBroke; ++j) // Boucle qui parcours toutes les tailles de tableau
         {
             size = timesTab[j];
+            printf("Size : %d\n", size );
             char str[NUMBER_SIZE] = "";
             if (endTimer(Timer5min) > 300.0){ // Test si le timer excède 5min (300 secondes)
                 printf("Temps Ecoule... Pour l'algo SSq :%s \n",functionName[k]);
@@ -57,9 +56,10 @@ int main(int argc,char const * argv[])
             }
             tab = giveTestTab(size);
             debut = startTimer(); // temps début
-            (*fonctionDeSSq)(tab, size); // Lance le test
+            r = (*fonctionDeSSq)(tab, size); // Lance le test
             tt = endTimer(debut); // temps final du traitement du tris.
-            free(tab);   
+            free(tab);
+            afficheResultat(r);
             FILE *f = fopen("data.csv","r+");
             if (f == NULL){
                 printf("Fichier non trouvé.\n");
