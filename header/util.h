@@ -12,6 +12,9 @@ struct Result
     int max;
 };
 
+#define MAX_VALUE 100
+
+
 /**
  * \fn void afficheResultat( Result res) 
  * \author Yohan Roux 
@@ -40,7 +43,7 @@ void afficheTab(int t[], int n);
 void calSomme(int t[], int debut,int fin);
 
 /**
- * \fn int * generateTab( int size, bool init )
+ * \fn void afficheTabIndice(int debut, int fin, int tab[] )
  * \author Yohan Roux 
  * \brief affiche le contenu du tableau entre 2 indices 
  * \param[in] debut indice du début de la séquence 
@@ -48,5 +51,28 @@ void calSomme(int t[], int debut,int fin);
  * \param[in] tab le tableau ou se trouve la séquence  
  */
 void afficheTabIndice(int debut, int fin, int tab[]);
+
+/**
+ * \fn int * giveTestTab( int size )
+ * \author Yohan Roux 
+ * \brief renvoi un tableau de nombre aléatoire d'une taille de size
+ * \param[in] size taille du tableau a remplir 
+ */
+int* giveTestTab(int size);
+
+/**
+ * \fn float endTimer( clock_t debut )
+ * \author Yohan Roux 
+ * \brief calcul le temps d'exécution entre l'argument et le moment présent 
+ * \param[in] debut valeur du déclanchement du chrono 
+ */
+float endTimer(clock_t debut);
+
+/**
+ * \fn clock_t startTimer()
+ * \author Yohan Roux 
+ * \brief renvoi le moment présent en clock_t 
+ */
+clock_t startTimer();
 
 #endif 

@@ -30,3 +30,25 @@ void afficheTabIndice(int debut, int fin, int tab[]){
     }
     printf("%d]\n",tab[fin]);
 }
+
+int* giveTestTab(int size){
+    int* test = newArray(size);
+    srand(time(0));
+    int i;
+    for (i=0 ; i<size ; i++)
+    {
+        test[i]=((unsigned int) rand()%MAX_VALUE);
+    }
+    return test;
+}
+
+float endTimer(clock_t debut){
+    clock_t fin = clock();
+    float tt = ((fin-debut)*1.0/CLOCKS_PER_SEC);
+    return tt;
+}
+
+clock_t startTimer(){
+    clock_t debut = clock();
+    return debut;
+}
