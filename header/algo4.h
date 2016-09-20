@@ -1,5 +1,5 @@
-#ifndef __ALGO2_H__
-#define __ALGO2_H__
+#ifndef __ALGO4_H__
+#define __ALGO4_H__
 
 /**
  * \fn Result algo4(int t[], int n)
@@ -9,8 +9,6 @@
  * \param[in] N taille du tableau 
  * \return un objet result contenant le max et les bornes de la séquence max  
  */
-Result algo4(int t[], int n);
-
-
+Result algo4(int* t, int n);
 
 #endif 

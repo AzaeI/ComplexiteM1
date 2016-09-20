@@ -9,6 +9,6 @@
  * \param[in] n taille du tableau  
  * \return un objet result contenant le max et les bornes de la séquence max 
  */
-Result algo1(int t[], int n);
+Result algo1(int* t, int n);
 
 #endif 

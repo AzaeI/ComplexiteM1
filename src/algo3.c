@@ -130,7 +130,7 @@ Result diviserPourRegner(int t[], int debut, int fin ){
     return r;
 }
 
-Result aglo3(int t[],int n){  
+Result algo3(int* t,int n){  
     Result r;
     r = diviserPourRegner(t,0,n-1);
     return r;

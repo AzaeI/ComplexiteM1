@@ -1,7 +1,7 @@
 #include "../header/util.h"
 #include "../header/algo2.h"
 
-Result aglo2Bis(int t[], int debut, int fin){
+Result aglo2Bis(int* t, int debut, int fin){
   int max = t[0],
   indiceD = debut,
   indiceF = debut,
@@ -31,7 +31,7 @@ resultat.max = max;
 return resultat;
 }
 
-Result algo2 (int t[], int size){
+Result algo2 (int* t, int size){
   Result r;
   r = aglo2Bis(t,0,size);
   return r;
