@@ -162,7 +162,7 @@ FIN
 Fonction Result diviserPourRegner(tableau,debut,fin)
 DEBUT
     Result r;
-    SI debut == fin
+    SI debut == fin 
         r.max = t[debut]
         r.debut = debut
         r.fin = fin
