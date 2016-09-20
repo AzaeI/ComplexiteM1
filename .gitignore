@@ -2,3 +2,5 @@
 *.exe
 *.exe.*
 src/*.o
+MSSQ
+MSSQ.exe
