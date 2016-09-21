@@ -3,8 +3,12 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <time.h> //clock()
 #include <string.h>
+#include <signal.h> // alarms
+#include <sys/sysinfo.h> //signal
+
 
 typedef struct Result Result;
 struct Result 
