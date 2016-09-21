@@ -92,7 +92,7 @@ int* giveTestTab(int size);
  * \brief calcul le temps d'exécution entre l'argument et le moment présent 
  * \param[in] debut valeur du déclanchement du chrono 
  */
-float endTimer(clock_t debut);
+double endTimer(clock_t debut);
 
 /**
  * \fn clock_t startTimer()

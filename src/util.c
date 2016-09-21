@@ -53,10 +53,9 @@ int* giveTestTab(int size){
     return test;
 }
 
-float endTimer(clock_t debut){
+double endTimer(clock_t debut){
     clock_t fin = clock();
-    float tt = ((fin-debut)*1.0/CLOCKS_PER_SEC);
-    return tt;
+    return (double) (fin - debut) / CLOCKS_PER_SEC;;
 }
 
 clock_t startTimer(){
