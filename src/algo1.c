@@ -14,7 +14,6 @@ Result algo1(int* t, int n){
             for (int i = indiceCourrantD; i < indiceCourrantF +1; ++i) {
                 maxTmp += t[i];
             }
-            // printf(" max tmp = %d\n", maxTmp);
             if (maxTmp > max){
                 max = maxTmp;
                 indiceD = indiceCourrantD;

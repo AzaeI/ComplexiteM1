@@ -1,7 +1,7 @@
 #include "../header/util.h"
 #include "../header/algo3.h"
 
-Result collerGauche(Result resultat1,int debutSeq2,int finSeq2,int tab[]){
+Result collerGauche(Result resultat1,Result resultat2,int debutSeq2,int tab[]){
     int i = 0;
     Result resultatMilieu;
     resultatMilieu.max = tab[debutSeq2]+ resultat1.max;
@@ -12,7 +12,7 @@ Result collerGauche(Result resultat1,int debutSeq2,int finSeq2,int tab[]){
         //si le milieu est améliore par la  sous séquence a droite  
     i = debutSeq2 +1;
     resultMaxTemp = resultatMilieu.max;
-    while(i <= finSeq2 ){
+    while(i <= resultat2.fin ){
         resultMaxTemp += tab[i];
         if(resultMaxTemp > resultatMilieu.max){
             resultatMilieu.max = resultMaxTemp;
@@ -74,7 +74,7 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
 
     //coler a gauche 
     else if(resultat1.fin == finSeq1){
-        resultatMilieu = collerGauche(resultat1,debutSeq2,finSeq2,tab);
+        resultatMilieu = collerGauche(resultat1,resultat2,debutSeq2,tab);
     }
     //coler a droite 
     else if(resultat2.debut == debutSeq2){
@@ -98,7 +98,7 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
         }
 
         i = debutSeq2 +1;
-        while(i <= finSeq2 ){
+        while(i <= resultat2.fin ){
             resultMaxTemp += tab[i];
             if(resultMaxTemp > resultatMilieu.max){
                 resultatMilieu.max = resultMaxTemp;

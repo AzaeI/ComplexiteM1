@@ -13,7 +13,7 @@ Result algo4(int* t, int n)
     {
         if (somme < 0){
           somme = 0;
-          debutTmp = i+1;
+          debutTmp = i;
         }
         somme += t[i];
         if(resultat.max < somme){
