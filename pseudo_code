@@ -56,52 +56,59 @@ Result {
     fin
 }
 
-FONCTION Result collerGauche (Result resultat1,debutSeq2,finSeq2,tableau)
+fonction Result collerGauche(Result resultat1,Result resultat2,debutSeq2,tableau tab)
+renvoie Result
 DEBUT
-    i = 0
-    Result resultatMilieu
-    resultatMilieu.max = tableau[debutSeq2]+ resultat1.max
+    i = 0;
+    Result resultatMilieu;
+    resultatMilieu.max = tab[debutSeq2]+ resultat1.max
     resultatMilieu.debut = resultat1.debut
     resultatMilieu.fin = debutSeq2
-    resultMaxTemp =  resultatMilieu.max
+    int resultMaxTemp =  resultatMilieu.max
     i = debutSeq2 +1
     resultMaxTemp = resultatMilieu.max
-    TANT_QUE i <= finSeq2
-        resultMaxTemp = resultMaxTemp+tableau[i]
-        SI resultMaxTemp > resultatMilieu.max
+    TANQUE i <= resultat2.fin 
+        resultMaxTemp = resultMaxTemp + tab[i]
+        SI(resultMaxTemp > resultatMilieu.max)
             resultatMilieu.max = resultMaxTemp
             resultatMilieu.fin = i
         FIN_SI
         i = i +1 
     FIN_TANQUE
-    retourne resultatMilieu
+    RETOURNER resultatMilieu;
 FIN
 
 
-FONCTION Result collerDroite(Result resultat2,Result resultat1,finSeq1,tableau)
-DEBUT    
-    i = 0;
-    Result resultatMilieu;
-    resultatMilieu.max = tableau[finSeq1] + resultat2.max
-    resultatMilieu.debut = finSeq1 -1
-    resultatMilieu.fin = resultat2.fin
-    resultMaxTemp =  resultatMilieu.max;
+fonction Result collerDroite Result resultat2,Result resultat1,finSeq1,tableau tab)
+renvoie RESULT
+DEBUT
+    i = 0
+    Result resultatMilieu
+    resultatMilieu.max = tab[finSeq1] + resultat2.max
+    resultatMilieu.debut = finSeq1
+    resultatMilieu.fin = resultat2.fin 
+    int resultMaxTemp =  resultatMilieu.max
+    //si le milieu est améliore par la  sous séquence a gauche 
     i = finSeq1 -1
     resultMaxTemp = resultatMilieu.max
-    TANT_QUE i >= resultat1.debut 
-        resultMaxTemp += tableau[i];
-        SI resultMaxTemp > resultatMilieu.max
-            resultatMilieu.max = resultMaxTemp;
-            resultatMilieu.debut = i;
+    TANQUE i >= resultat1.debut 
+        resultMaxTemp = resultMaxTemp + tab[i]
+        SI(resultMaxTemp > resultatMilieu.max){
+            resultatMilieu.max = resultMaxTemp
+            resultatMilieu.debut = i
         FIN_SI
         --i;
     FIN_TANQUE
-    retourne resultatMilieu;
+    RETOUR resultatMilieu;
 FIN
 
-FONCTION Result testSousSequence (Result resultat1,debutSeq1, finSeq1,
-    Result resultat2,debutSeq2,finSeq2,tableau) {
-    Result resultat
+FONCTION testSousSequence(Result resultat1,debutSeq1,finSeq1,Result resultat2, 
+         debutSeq2, finSeq2,tableau tab) 
+renvoie Result
+    Result resultat;
+    i
+    resultMaxTemp;
+    //gauche ou droite 
     SI resultat1.max < resultat2.max  
         resultat.max = resultat2.max
         resultat.debut = resultat2.debut
@@ -113,69 +120,77 @@ FONCTION Result testSousSequence (Result resultat1,debutSeq1, finSeq1,
         resultat.fin = resultat1.fin
     FIN_SINON
     Result resultatMilieu
-    
-    SI resultat1.fin == finSeq1 & resultat2.debut == debutSeq2 
+    //coler au 2
+    SI (resultat1.fin == finSeq1 && resultat2.debut == debutSeq2)
         resultatMilieu.max = resultat1.max + resultat2.max
         resultatMilieu.debut = resultat1.debut
         resultatMilieu.fin = resultat2.fin
     FIN_SI
- 
-    SINON_SI resultat1.fin == finSeq1
-        resultatMilieu = collerGauche(resultat1,debutSeq2,finSeq2,tableau)
-    FIN_SINON
 
-    SINON_SI resultat2.debut == debutSeq2
-        resultatMilieu = collerDroite(resultat2,resultat1,finSeq1,tableau);
+    //coler a gauche 
+    SINON_SI (resultat1.fin == finSeq1)
+        resultatMilieu = collerGauche(resultat1,resultat2,debutSeq2,tab)
+    FIN_SI
+    //coler a droite 
+    SINON_SI (resultat2.debut == debutSeq2)
+        resultatMilieu = collerDroite(resultat2,resultat1,finSeq1,tab)
     FIN_SINON
-
-    SINON
-        resultatMilieu.max = tableau[finSeq1] + tableau[debutSeq2];
-        resultatMilieu.debut = finSeq1;
-        resultatMilieu.fin = debutSeq2; 
+    //Pas coller
+    SINON 
+        resultatMilieu.max = tab[finSeq1] + tab[debutSeq2]
+        resultatMilieu.debut = finSeq1
+        resultatMilieu.fin = debutSeq2
         i = finSeq1 -1;
 
-        resultMaxTemp = resultatMilieu.max;
-        TANT_QUE i >= resultat1.debut
-            resultMaxTemp =  resultMaxTemp + tableau[i];
-            SI resultMaxTemp > resultatMilieu.max
-                resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.debut = i;
+        resultMaxTemp = resultatMilieu.max
+        TANT_QUE (i >= resultat1.debut )
+            resultMaxTemp += tab[i];
+            SI(resultMaxTemp > resultatMilieu.max)
+                resultatMilieu.max = resultMaxTemp
+                resultatMilieu.debut = i
             FIN_SI
-            --i;
-        FIN_TANT_QUE
-        i = debutSeq2 +1;
-        TANT_QUE i <= finSeq2 
-            resultMaxTemp += tableau[i];
-            SI resultMaxTemp > resultatMilieu.max
-                resultatMilieu.max = resultMaxTemp;
-                resultatMilieu.fin = i;
-            FIN_SI
-            ++i;
-        FIN_TANT_QUE
-    FIN_SINON
-    SI resultatMilieu.max > resultat.max
-     retourne resultatMilieu
-    FIN_SI
- retourne resultat;
-FIN
+            i = i-1
+        FIN_TANTQUE
 
-Fonction Result diviserPourRegner(tableau,debut,fin)
-DEBUT
+        resultMaxTemp = resultatMilieu.max
+        i = debutSeq2 +1
+        TANT_QUE(i <= resultat2.fin )
+            resultMaxTemp += tab[i]
+            SI(resultMaxTemp > resultatMilieu.max){
+                resultatMilieu.max = resultMaxTemp
+                resultatMilieu.fin = i
+            FIn_SI
+            i = i +1 
+        FIN_TANTQUE
+    FIN_SINON
+    SI (resultatMilieu.max > resultat.max)
+        retourner resultatMilieu;
+    FIN_SI
+    retourner resultat;
+}
+
+Result diviserPourRegner(int t[], int debut, int fin ){
     Result r;
-    SI debut == fin 
-        r.max = t[debut]
-        r.debut = debut
-        r.fin = fin
-    FIN_SI
-    SINON SI debut < fin 
-        Result r1
-        Result r2
-        r1 = diviserPourRegner(t,debut,(debut+fin)/2)
-        r2 = diviserPourRegner(t,((debut+fin)/2)+1,fin)
-        r = testSousSequence(r1,debut,((debut+fin)/2),r2,(((debut+fin)/2)+1),fin,t)
-    FIN_SI
-    retourne r;
-FIN
+    if(debut == fin){
+        r.max = t[debut];
+        r.debut = debut;
+        r.fin = fin;
+    }
+    else if (debut < fin) {
+        Result r1;
+        Result r2;
+        r1 = diviserPourRegner(t,debut,(debut+fin)/2);
+        r2 = diviserPourRegner(t,((debut+fin)/2)+1,fin);
+        r = testSousSequence(r1,debut,((debut+fin)/2),r2,(((debut+fin)/2)+1),fin,t);
+    }
+    return r;
+}
+
+Result algo3(int* t,int n){  
+    Result r;
+    r = diviserPourRegner(t,0,n-1);
+    return r;
+}
 
 FONCTION Result aglo3(tableau,n){  
     Result r

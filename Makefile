@@ -4,7 +4,7 @@ CCFLAGS=-Wall -W -std=99 -pedantic -I.header
 SRC=$(wildcard src/*.c)
 OBJ=$(SRC:.c=.o)
 
-EXEC=MSSQ
+EXEC=MSSC
 
 all: $(EXEC)
 

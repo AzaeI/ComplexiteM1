@@ -28,7 +28,7 @@ Result collerDroite(Result resultat2,Result resultat1,int finSeq1,int tab[]){
     int i = 0;
     Result resultatMilieu;
     resultatMilieu.max = tab[finSeq1] + resultat2.max;
-    resultatMilieu.debut = finSeq1 -1;
+    resultatMilieu.debut = finSeq1;
     resultatMilieu.fin = resultat2.fin; 
     int resultMaxTemp =  resultatMilieu.max;
     //si le milieu est améliore par la  sous séquence a gauche 
@@ -97,6 +97,7 @@ Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
             --i;
         }
 
+        resultMaxTemp = resultatMilieu.max;
         i = debutSeq2 +1;
         while(i <= resultat2.fin ){
             resultMaxTemp += tab[i];

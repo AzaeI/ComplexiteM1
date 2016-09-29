@@ -120,7 +120,6 @@ void startTest() {
                 writeFic(taille,k,tt);
                 exit(EXIT_SUCCESS);
             }
-            //wait(&status);
         }
         while(wait(&status) != -1);
         NombreCoeurUtilise = 0;
@@ -140,7 +139,7 @@ int main(int argc,char const * argv[])
        tab[i] = atoi(argv[i+1]);
     }
     Result res;
-    res = algo1(tab,tailleTab);
+    res = algo3(tab,tailleTab);
     printf("algo1: %d %d\n",res.debut,res.fin);
     res = algo2(tab,tailleTab);
     printf("algo2: %d %d\n",res.debut,res.fin);
