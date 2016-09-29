@@ -59,34 +59,3 @@ clock_t startTimer(){
     clock_t debut = clock();
     return debut;
 }
-
-void append(char subject[], const char insert[], int pos) {
-    char buf[100] = {};
-    strncpy(buf, subject, pos); // copy at most first pos characters
-    int len = strlen(buf);
-    strcpy(buf+len, insert); // copy all of insert[] at the end
-    len += strlen(insert);  // increase the length by length of insert[]
-    strcpy(buf+len, subject+pos); // copy the rest
-
-    strcpy(subject, buf);   // copy it back to subject
-}
-
-char* normalizeFloat(char* s, float f){
-    char* nbZtoAdd;
-    if (f < 10){
-        nbZtoAdd = "00";
-        sprintf(s,"%f",f);
-        append(s,nbZtoAdd,0);
-        return s;
-    }
-    else if (f < 100)
-    {
-        nbZtoAdd = "0";
-        sprintf(s,"%f",f);
-        append(s,nbZtoAdd,0);
-        return s;
-    }else{
-        sprintf(s,"%f",f);
-        return s;
-    } 
-}

@@ -63,13 +63,6 @@ void calSomme(int t[], int debut,int fin);
  */
 void afficheTabIndice(int debut, int fin, int tab[]);
 
-/*
-    Auteur : Yohan Roux
-    Description : Créé un nouveau tableau et alloue sa zone mémoire.
-            In  : La taille du tableau que l'on veut générer.
-            Out : Le tableau.
-*/
-
 /**
  * \fn int* newArray(int SIZE )
  * \author Yohan Roux 
@@ -100,21 +93,5 @@ double endTimer(clock_t debut);
  * \brief renvoi le moment présent en clock_t 
  */
 clock_t startTimer();
-
-/**
- * \fn void append(char subject[], const char insert[], int pos)
- * \author 100% google -> http://stackoverflow.com/questions/7459259/inserting-characters-into-a-string
- * \brief 2 chaines de caractères, la 2ème se placera avant la première a partir de la position donné. (0 pour nous)
- */
-void append(char subject[], const char insert[], int pos);
-
-/**
- * \fn char* normalizeFloat(char* s, float f)
- * \author Yohan Roux 
- * \brief Transforme un float donné et le formate en chaine de caractère. 
- * \param[in] Une chaine de caractère qui permet de stocker le float. 
- * \param[in] Le float à passer en chaine de caracère.
- */
-char* normalizeFloat(char* s, float f);
 
 #endif 

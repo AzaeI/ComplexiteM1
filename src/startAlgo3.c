@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
     }
     Result res;
     res = algo3(tab,tailleTab);
-    printf("Resultat: %d %d max: %d\n",res.debut,res.fin,res.max);
+    afficheResultat(res);
     
     free(tab);
     return 0;
