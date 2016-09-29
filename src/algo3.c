@@ -46,8 +46,8 @@ Result collerDroite(Result resultat2,Result resultat1,int finSeq1,int tab[]){
 
 }
 
-Result testSousSequence(Result resultat1, int debutSeq1, int finSeq1,
-    Result resultat2, int debutSeq2, int finSeq2,
+Result testSousSequence(Result resultat1, int finSeq1,
+    Result resultat2, int debutSeq2,
     int tab[]) {
     Result resultat;
     int i;
@@ -126,7 +126,7 @@ Result diviserPourRegner(int t[], int debut, int fin ){
         Result r2;
         r1 = diviserPourRegner(t,debut,(debut+fin)/2);
         r2 = diviserPourRegner(t,((debut+fin)/2)+1,fin);
-        r = testSousSequence(r1,debut,((debut+fin)/2),r2,(((debut+fin)/2)+1),fin,t);
+        r = testSousSequence(r1,((debut+fin)/2),r2,(((debut+fin)/2)+1),t);
     }
     return r;
 }
@@ -136,3 +136,4 @@ Result algo3(int* t,int n){
     r = diviserPourRegner(t,0,n-1);
     return r;
 }
+

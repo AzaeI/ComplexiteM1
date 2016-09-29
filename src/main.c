@@ -25,8 +25,8 @@ int j;    // compteur boucle des tailles d'un tableau pour un tris
 int indiceSize( int size ) {
     int i;
     for(i=0; i<NBTAILLE; ++i)
-     if(tailleTab[i] == size)
-        return i;
+    if(tailleTab[i] == size)
+    return i;
     return 0;
 }
 
@@ -39,12 +39,12 @@ void initFic() {
     if (file != NULL) {
         fprintf(file, "Nom\\Taille,");
         for(j=0; j<NBTAILLE; ++j)
-            fprintf(file,"%d,", tailleTab[j]);
+        fprintf(file,"%d,", tailleTab[j]);
         fprintf(file, "\n");
         for(i=0; i<NBALGO; ++i) {
             fprintf(file,"%s,", nomFontion[i]);
             for(j=0; j<NBTAILLE; ++j)
-                fprintf(file,"%011.06f,",300.0);
+            fprintf(file,"%011.06f,",300.0);
             fprintf(file,"\n");
         }
         fclose(file);
@@ -53,16 +53,15 @@ void initFic() {
 
 void writeFic(int size, int nbTri, double result) {
     int i, j;
-    double score;
     char carac = 'a';
     char string[SIZE_MAX_BUFF_READ];
     FILE* file = NULL;
     file = fopen("result.csv", "r+");
 
     for(i=0; i<nbTri+1; ++i)
-        fgets(string, SIZE_MAX_BUFF_READ, file);
+    fgets(string, SIZE_MAX_BUFF_READ, file);
     while (carac != ',')
-        carac = (char)fgetc(file);
+    carac = (char)fgetc(file);
     j = indiceSize(size);
     j = (SIZEDOUBLE+1)*j;
     fseek(file, j , SEEK_CUR);
@@ -83,7 +82,6 @@ void startTest() {
     int* tab; // le tableau qui est utilisé pour les test
     int status;
 
-    clock_t Timer5min; // valeur du timer de début pour test si elle est inferieur à 5min a chaque test de tableau.
     clock_t debut;     // valeur du début du test pour avoir la valeur en secondes (float) du temps du test
 
     double tt;          // valeur finale du temps qu'a mis le test pour un tableau a s'effectuer.
@@ -128,24 +126,9 @@ void startTest() {
 }
 
 int main(int argc,char const * argv[])
-{
-    if(argc < 2){
-        startTest();
-        return 0;
-    }
-    int tailleTab = argc -1; 
-    int *tab = (int*)malloc(tailleTab * sizeof(int));
-    for (int i = 0; i < tailleTab; ++i) {
-       tab[i] = atoi(argv[i+1]);
-    }
-    Result res;
-    res = algo3(tab,tailleTab);
-    printf("algo1: %d %d\n",res.debut,res.fin);
-    res = algo2(tab,tailleTab);
-    printf("algo2: %d %d\n",res.debut,res.fin);
-    res = algo3(tab,tailleTab);
-    printf("algo3: %d %d\n",res.debut,res.fin);
-    res = algo4(tab,tailleTab);  
-    printf("algo4: %d %d\n",res.debut,res.fin);
-    free(tab);
+{   
+    (void) argc;
+    (void)argv;
+    startTest();
+    return 0;    
 }

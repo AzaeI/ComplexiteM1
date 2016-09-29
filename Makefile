@@ -1,22 +1,29 @@
-CC=gcc
-CCFLAGS=-Wall -W -std=99 -pedantic -I.header
+CC = gcc
 
-SRC=$(wildcard src/*.c)
-OBJ=$(SRC:.c=.o)
+INCLUDE = -I/usr/local/include -I/usr/include -I ./header
+CCFLAGS = -Wall -W 
 
-EXEC=MSSC
+all: algo1 algo2 algo3 algo4 EvalTime
 
-all: $(EXEC)
+algo1: ./src/algo1.c ./src/util.c ./src/startAlgo1.c
+	$(CC) -o algo1 $(INCLUDE) ./src/startAlgo1.c ./src/algo1.c ./src/util.c $(CCFLAGS)
 
-$(EXEC): $(OBJ)
-	$(CC) -o  $(EXEC) $^ 
+algo2: ./src/algo2.c ./src/util.c ./src/startAlgo2.c
+	$(CC) -o algo2 $(INCLUDE) ./src/algo2.c ./src/util.c ./src/startAlgo2.c $(CCFLAGS)
 
-$.o: %.c
-	$(CC) -o $@ -c $< $(CCFLAGS)
+algo3: ./src/algo3.c ./src/util.c ./src/startAlgo3.c
+	$(CC) -o algo3 $(INCLUDE) ./src/algo3.c ./src/util.c ./src/startAlgo3.c $(CCFLAGS)
+
+algo4: ./src/algo4.c ./src/util.c ./src/startAlgo4.c
+	$(CC) -o algo4 $(INCLUDE) ./src/algo4.c ./src/util.c  ./src/startAlgo4.c $(CCFLAGS)
+
+EvalTime: ./src/main.c ./src/util.c  ./src/algo1.c ./src/algo2.c ./src/algo3.c ./src/algo4.c
+	$(CC) -o EvalTime $(INCLUDE) ./src/main.c ./src/util.c ./src/algo1.c ./src/algo2.c ./src/algo3.c  ./src/algo4.c $(CCFLAGS)
 
 clean:
-	@echo "Remove .o file"
-	rm -r src/*.o
-
-cm: clean | $(EXEC)
-	
+	-rm *.o *~
+	-rm algo1
+	-rm algo2
+	-rm algo3
+	-rm algo4
+	-rm EvalTime

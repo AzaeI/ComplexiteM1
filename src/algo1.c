@@ -30,3 +30,4 @@ Result algo1(int* t, int n){
     resultat.max = max;
     return resultat;
 }
+

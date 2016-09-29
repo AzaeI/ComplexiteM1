@@ -41,12 +41,9 @@ int* giveTestTab(int size){
     srand(time(0));
     int Min = -100;
     int Max = 100;
-    int diff = Max-Min;
     int i;
     for (i=0 ; i<size ; i++)
     {
-        // test[i] = (int) (((double)(diff+1)/RAND_MAX) * rand() + Min);
-        // test[i]=((unsigned int) rand()%MAX_VALUE);
         test[i] = rand()%(Max-Min)+Min;
 
     }

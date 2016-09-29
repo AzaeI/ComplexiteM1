@@ -24,3 +24,4 @@ Result algo4(int* t, int n)
     }
     return resultat;
 }
+
