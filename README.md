@@ -12,8 +12,8 @@ Pour compiler le projet faire make.
 Utilisation :
 
 - Pour les Algo 1, 2, 3 et 4 :
-	./Algo* [tableau d'éléments]
-		
+	
+		./Algo* [tableau d'éléments]
 		ex: ./Algo1 1 -2 3 -4 5 
 		ex: ./Algo4 100 -50 80 -45  
 
