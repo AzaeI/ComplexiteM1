@@ -1,7 +1,7 @@
 CC = gcc
 
 INCLUDE = -I/usr/local/include -I/usr/include -I ./header
-CCFLAGS = -Wall -W 
+CCFLAGS = -Wall -W -std=c99
 
 all: algo1 algo2 algo3 algo4 EvalTime
 

@@ -1,6 +1,7 @@
-*.out
-*.exe
-*.exe.*
 src/*.o
-MSSQ
-MSSQ.exe
+*.o
+algo1
+algo2
+algo3
+algo4
+EvalTime
