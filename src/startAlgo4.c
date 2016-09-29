@@ -16,8 +16,6 @@ int main(int argc, char const *argv[])
     res = algo4(tab,tailleTab);
     printf("Resultat: %d %d max: %d\n",res.debut,res.fin,res.max);
     
-    tab =giveTestTab(tailleTab);
-
     free(tab);
     return 0;
 }

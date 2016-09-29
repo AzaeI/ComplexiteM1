@@ -46,7 +46,7 @@ void afficheTab(int t[], int n);
 /**
  * \fn void calSomme(int t[], int debut,int fin) 
  * \author Yohan Roux 
- * \brief calcule la somme d'une sécance 
+ * \brief calcule la somme d'une séquence 
  * \param[in] t le tableau  
  * \param[in] debut l'indice de départ de la séquence a calculer 
  * \param[in] fin l'indice de fin de la séquence a calculer  
